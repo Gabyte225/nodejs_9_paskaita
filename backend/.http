@@ -1,0 +1,23 @@
+###
+GET http://localhost:5000/api/movies?limit=2
+
+###
+POST http://localhost:5000/api/movies
+Content-Type: application/json
+
+{
+    "name": "Dark Knight",
+    "category": "Drama",
+    "rentPrice": 3
+}
+
+###
+PUT http://localhost:5000/api/movies/6356d0bf306e4a16ae146717
+Content-Type: application/json
+
+{
+    "category": "Action"
+}
+
+###
+DELETE  http://localhost:5000/api/movies/6356d4991327476d6f339c7e

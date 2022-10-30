@@ -1,0 +1,69 @@
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 25px;
+}
+
+main section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+main section h3 {
+  width: 30%;
+}
+
+main section #movies-filter-container {
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+main section #movies-filter-container label:nth-child(3) {
+  margin-left: 30px;
+}
+
+main section #movies-filter-container select {
+  margin-left: 7px;
+}
+
+main section #movies-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+main section #movies-container div {
+  width: calc(100% / 3 - 15px);
+  padding: 10px;
+  background-color: rgb(232, 232, 232);
+  border: 1px solid rgb(232, 232, 232);
+}
+
+main section #movies-container div:hover {
+  border-color: rgb(128, 128, 128);
+}
+
+@media screen and (min-width: 768px) {
+  main section #movies-container div {
+    width: calc(100% / 5 - 15px);
+  }
+}
+@media screen and (min-width: 1024px) {
+  main section #movies-container div {
+    width: calc(100% / 6 - 15px);
+  }
+}
+@media screen and (min-width: 1400px) {
+  main section #movies-container div {
+    width: calc(100% / 7 - 15px);
+  }
+}

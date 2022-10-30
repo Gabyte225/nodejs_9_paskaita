@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page - Movie app</title>
+    <!-- style links -->
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <!-- JS -->
+    <script src="./scripts/index.js" defer type="module"></script>
+  </head>
+  <body>
+    <header>
+      <div id="logo">Movie Rent</div>
+      <nav>
+        <ul>
+          <li><a href="./index.html">Home</a></li>
+          <li><a href="./pages/admin.html">Admin</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Home page</h1>
+      <section>
+        <h3>Movie list</h3>
+        <div id="movies-filter-container">
+          <label for="movies-filter-by-category">Filter category:</label>
+          <select id="movies-filter-by-category"></select>
+          <label for="movies-filter-by-price">Filter price:</label>
+          <select id="movies-filter-by-price"></select>
+        </div>
+        <div id="movies-container"></div>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>
