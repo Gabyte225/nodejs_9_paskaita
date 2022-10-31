@@ -126,3 +126,20 @@ main section p {
   background-color: #800101;
   color: white;
 }
+
+footer {
+  width: 100%;
+  text-align: center;
+  bottom: 5%;
+}
+
+footer span {
+  cursor: pointer;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid gray;
+  margin: 3px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}

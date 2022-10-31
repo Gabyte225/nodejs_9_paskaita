@@ -52,6 +52,70 @@ main section #movies-container div:hover {
   border-color: rgb(128, 128, 128);
 }
 
+#form-div-search-movies {
+  margin-top: 20px;
+}
+
+form #input {
+  border: none;
+  outline: transparent;
+  padding: 2px 13px;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: transparent;
+}
+
+::placeholder {
+  color: rgb(99, 97, 97);
+  opacity: 1;
+}
+
+form #search-button {
+  border: none;
+  background-color: transparent;
+  font-size: 17px;
+  color: #514f4f;
+}
+
+form #search-button:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  color: black;
+}
+
+form #search-button:focus {
+  outline: none;
+  color: black;
+}
+
+form {
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 1.5px solid black;
+  width: 280px;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  bottom: 30%;
+}
+
+footer span {
+  cursor: pointer;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid gray;
+  margin: 3px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.hide {
+  display: none;
+}
+
 @media screen and (min-width: 768px) {
   main section #movies-container div {
     width: calc(100% / 5 - 15px);

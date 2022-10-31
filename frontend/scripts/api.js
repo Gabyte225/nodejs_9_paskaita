@@ -5,8 +5,8 @@ class API {
     this.endpoint = endpoint;
   }
 
-  async getData(page) {
-    const response = await fetch(this.endpoint + "?pages=" + page);
+  async getData() {
+    const response = await fetch(this.endpoint);
 
     const data = response.json();
 
