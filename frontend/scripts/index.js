@@ -12,10 +12,16 @@ const moviesFilterByPriceElement = document.querySelector(
 
 const moviesContainerElement = document.querySelector("#movies-container");
 
+const paginationElement = document.querySelector("#pagination");
+const inputElement = document.querySelector("#input");
+const searchButtonElement = document.querySelector("#search-button");
+
 //--logic
 
 let movies = [];
 let category;
+let page = 1;
+let itemsPerPage = 10;
 
 //Functions
 //-- get all movies
@@ -26,7 +32,11 @@ const getMovies = async () => {
   movies.push(...data.movies);
 
   generateOptionTags(data.movies);
-  showMovies(data.movies);
+
+  showMoviesByPagination(data.movies);
+  loadPaginationFooter(data.movies);
+
+  searchMovie(data.movies);
 };
 
 //-- generate <option> tags for filtering <select>
@@ -115,14 +125,14 @@ const filterMoviesByCategory = (e) => {
   category = e.target.value;
 
   if (category === "all-movies") {
-    showMovies(movies);
+    showMoviesByPagination(movies);
     generateOptionTags(movies, "category");
   } else {
     const filteredMovies = movies.filter(
       (movie) => movie.category === category
     );
 
-    showMovies(filteredMovies);
+    showMoviesByPagination(filteredMovies);
     generateOptionTags(filteredMovies, "category");
   }
 };
@@ -131,12 +141,12 @@ const filterMoviesByCategory = (e) => {
 const filterMoviesByPrice = (e) => {
   const currentPrice = e.target.value;
   if (category === "all-movies" && currentPrice === "all-prices") {
-    showMovies(movies);
+    showMoviesByPagination(movies);
   } else if (currentPrice === "all-prices") {
     const filteredMovies = movies.filter(
       (movies) => movies.category === category
     );
-    showMovies(filteredMovies);
+    showMoviesByPagination(filteredMovies);
   } else {
     let filteredMovies;
     if (category && category !== "all-movies") {
@@ -149,8 +159,56 @@ const filterMoviesByPrice = (e) => {
         (movie) => movie.rentPrice === +currentPrice
       );
     }
-    showMovies(filteredMovies);
+    showMoviesByPagination(filteredMovies);
   }
+};
+
+// -- -- pagination
+
+const showMoviesByPagination = (moviesArray) => {
+  let from = (page - 1) * itemsPerPage;
+  let to = page * itemsPerPage;
+  moviesArray = moviesArray.slice(from, to);
+
+  showMovies(moviesArray);
+};
+
+const loadPaginationFooter = (moviesArray) => {
+  for (let i = 0; i < moviesArray.length / itemsPerPage; i++) {
+    const span = document.createElement("span");
+    span.innerText = i + 1;
+    span.addEventListener("click", (e) => {
+      page = e.target.innerText;
+
+      showMoviesByPagination(moviesArray);
+    });
+
+    paginationElement.appendChild(span);
+  }
+};
+
+// -- --search for movies
+const searchMovie = (moviesArray) => {
+  searchButtonElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    const inputSearchMovie = inputElement.value.toUpperCase();
+    // console.log(inputSearchMovie);
+
+    let newArray = [];
+
+    for (let i = 0; i < moviesArray.length; i++) {
+      let movies = moviesArray[i];
+      let listOfMoviesNames = movies.name.toUpperCase();
+
+      if (listOfMoviesNames.indexOf(inputSearchMovie) > -1) {
+        newArray.push(movies);
+      } else {
+        console.log("There is no movie with that name");
+      }
+    }
+
+    showMoviesByPagination(newArray);
+  });
 };
 
 //Events

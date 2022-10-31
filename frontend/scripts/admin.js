@@ -11,8 +11,13 @@ const movieListContainerElement = document.querySelector(
 const movieUpdateDeleteMessageElement = document.querySelector(
   "#movie-update-delete-message"
 );
+const paginationElement = document.querySelector("#pagination");
 
 //Functions
+
+// -- -- logic
+let page = 1;
+let itemsPerPage = 10;
 
 //-- add movie
 const addMovie = async (e) => {
@@ -43,6 +48,9 @@ const getMovies = async () => {
   const data = await api.getData();
 
   showMovies(data.movies);
+  showMoviesByPagination(data.movies);
+
+  loadPaginationFooter(data.movies);
 };
 
 //-- show movies
@@ -161,6 +169,36 @@ const deleteMovie = async (e) => {
   movieUpdateDeleteMessageElement.className = "";
   movieUpdateDeleteMessageElement.classList.add("delete-message");
   getMovies();
+};
+
+const showMoviesByPagination = (moviesArray) => {
+  // console.log('Show movies - pagination');
+
+  let from = (page - 1) * itemsPerPage;
+  let to = page * itemsPerPage;
+  moviesArray = moviesArray.slice(from, to);
+
+  showMovies(moviesArray);
+};
+
+const loadPaginationFooter = (moviesArray) => {
+  while (paginationElement.firstChild) {
+    paginationElement.removeChild(paginationElement.firstChild);
+  }
+
+  for (let i = 0; i < moviesArray.length / itemsPerPage; i++) {
+    // console.log('Movies array length: ' + moviesArray.length);
+
+    const span = document.createElement("span");
+    span.innerText = i + 1;
+    span.addEventListener("click", (e) => {
+      page = e.target.innerText;
+
+      showMoviesByPagination(moviesArray);
+    });
+
+    paginationElement.appendChild(span);
+  }
 };
 
 //Events
